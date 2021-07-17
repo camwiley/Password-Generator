@@ -80,6 +80,59 @@ var lowerCasedCharacters = [
   'y',
   'z',
 ];
+
+function passwordCriteria() {
+
+    var length = parseInt(prompt('How many characters will your password contain?'), 10);
+
+    if (Number.isNaN(length)) {
+        alert("Password length must be a number.");
+        return null;
+    }
+
+    if (length < 8) {
+        alert("Password length must be at least 8 characters.");
+        return null;
+    }
+
+    if (length > 128) {
+        alert("Maximum password length is 128 characters.");
+        return null;
+    }
+    
+    var includesNumericCharacters = confirm(
+        "Click to confirm including numeric characters in your password."
+    );
+
+    var includesSpecialCharacters = confirm(
+        "Click to confirm including special characters in your password."
+    );
+
+    var includesUpperCasedCharacters = confirm(
+        "Click to confirm including upper case characters in your password."
+    );
+
+    var includesLowerCasedCharacters = confirm(
+        "Click to confirm including lower case characters in your password."
+    );
+
+    var passwordInput = {
+        length: length,
+        includesNumericCharacters: includesNumericCharacters,
+        includesSpecialCharacters: includesSpecialCharacters,
+        includesUpperCasedCharacters: includesUpperCasedCharacters,
+        includesLowerCasedCharacters: includesLowerCasedCharacters,
+    }
+
+
+        
+
+
+}
+
+
+
+}
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
