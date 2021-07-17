@@ -83,7 +83,10 @@ var lowerCasedCharacters = [
 
 function passwordCriteria() {
 
-    var length = parseInt(prompt('How many characters will your password contain?'), 10);
+    var length = parseInt(
+        prompt('How many characters will your password contain?'),
+        10
+    );
 
     if (Number.isNaN(length)) {
         alert("Password length must be a number.");
@@ -122,16 +125,58 @@ function passwordCriteria() {
         includesSpecialCharacters: includesSpecialCharacters,
         includesUpperCasedCharacters: includesUpperCasedCharacters,
         includesLowerCasedCharacters: includesLowerCasedCharacters,
-    }
+    };
 
-
-        
-
-
+    return passwordInput;
 }
 
+function getRandom(array) {
+    var index = Math.floor(Math.random() * array.length);
+    var randomEl = array[index];
+  
+    return randomEl;
+}
 
+function generatePassword() {
+    var selection = passwordCriteria();
+    var finalResult = [];
+    var possibleCharacters = [];
+    var chosenCharacters = [];
+  
 
+    if (!selection) return null;
+
+    if (selection.includesNumericCharacters) {
+        possibleCharacters = possibleCharacters.concat(numericCharacters);
+        chosenCharacters.push(getRandom(numericCharacters));
+    }
+
+    if (selection.includesSpecialCharacters) {
+        possibleCharacters = possibleCharacters.concat(specialCharacters);
+        chosenCharacters.push(getRandom(specialCharacters));
+    }
+
+    if (selection.includesUpperCasedCharacters) {
+        possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+        chosenCharacters.push(getRandom(upperCasedCharacters));
+    }
+
+    if (selection.includesLowerCasedCharacters) {
+        possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+        chosenCharacters.push(getRandom(lowerCasedCharacters));
+    }
+
+    for (var i = 0; i < selection.length; i++) {
+        var possiblePassword = getRandom(possibleCharacters);
+
+        finalResult.push(possiblePassword);
+    }
+
+    for (var i = 0; i < chosenCharacters.length; i++) {
+        finalResult[i] = chosenCharacters[i];
+    }
+
+    return finalResult.join("");
 }
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
